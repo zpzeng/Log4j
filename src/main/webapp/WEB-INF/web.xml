@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<web-app  
+        version="3.0"  
+        xmlns="http://java.sun.com/xml/ns/javaee"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <!-- 配置Spring MVC的核心控制器 -->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- 指定Spring MVC配置文件的位置 -->
+    <!-- 注：Spring MVC配置文件主要用于配置视图解析器等 -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>  <!-- 启动级别为1，Web运行则立即加载启动 -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>/*</url-pattern>  <!-- 让spring MVC的核心控制器处理.html结尾的请求 -->
+  </servlet-mapping>
+  
+  <!-- 配置Spring上下文启动监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- 指定Spring的上下文文件 -->
+  <!-- 注：上下文文件主要用于配置数据源与事务管理 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
+  <welcome-file-list>  
+     <welcome-file>index.jsp</welcome-file>  
+  </welcome-file-list> 
+</web-app>
